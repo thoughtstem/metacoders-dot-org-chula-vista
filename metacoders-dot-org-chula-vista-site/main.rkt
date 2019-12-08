@@ -25,6 +25,7 @@
 (define (index)
   (page index.html
         (city-page
+         #:city-name "Chula Vista"
          #:banner-url "https://upload.wikimedia.org/wikipedia/commons/e/e5/Chula_Vista%2C_CA%2C_USA_-_panoramio_%288%29.jpg"
          #:locations-list (list
                            (location-courses
