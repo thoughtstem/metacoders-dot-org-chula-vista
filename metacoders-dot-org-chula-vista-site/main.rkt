@@ -8,7 +8,7 @@
 (define (index)
   (page index.html
         (city-page
-         #:city-name "Chula Vista"
+         #:city-name "Chula Vista, CA"
          #:banner-url "https://upload.wikimedia.org/wikipedia/commons/e/e5/Chula_Vista%2C_CA%2C_USA_-_panoramio_%288%29.jpg"
          )))
 
