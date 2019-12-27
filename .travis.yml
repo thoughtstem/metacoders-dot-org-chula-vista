@@ -16,11 +16,7 @@ env:
     # Supply more than one RACKET_VERSION (as in the example below) to
     # create a Travis-CI build matrix to test against multiple Racket
     # versions.
-    - RACKET_VERSION=6.12
-    - RACKET_VERSION=7.0
-    - RACKET_VERSION=7.1
-    - RACKET_VERSION=7.2
-    - RACKET_VERSION=HEAD
+    - RACKET_VERSION=7.4
 
 matrix:
   allow_failures:
@@ -33,7 +29,8 @@ before_install:
 - export PATH="${RACKET_DIR}/bin:${PATH}" #install-racket.sh can't set for us
 
 install:
- - raco pkg install --auto --name metacoders-dot-org-chula-vista
+ - raco pkg update --auto --update-deps --batch --skip-uninstalled --no-setup metacoders-dot-org-chula-vista-lib
+ - raco pkg update --auto --update-deps --batch --skip-uninstalled --no-setup metacoders-dot-org-chula-vista-site
 
 before_script:
 
@@ -41,9 +38,8 @@ before_script:
 # `raco pkg install --deps search-auto` to install any required
 # packages without it getting stuck on a confirmation prompt.
 script:
- - raco test -x -p metacoders-dot-org-chula-vista
+
 
 after_success:
- - raco setup --check-pkg-deps --pkgs metacoders-dot-org-chula-vista
- - raco pkg install --auto cover cover-coveralls
- - raco cover -b -f coveralls -d $TRAVIS_BUILD_DIR/coverage .
+ - raco setup metacoders-dot-org-chula-vista-lib metacoders-dot-org-chula-vista-site
+
