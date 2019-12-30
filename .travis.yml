@@ -29,7 +29,15 @@ before_install:
 - export PATH="${RACKET_DIR}/bin:${PATH}" #install-racket.sh can't set for us
 
 install:
-- git clone https://github.com/thoughtstem/metacoders-dot-org-chula-vista.git#$TRAVIS_BRANCH
+- cd $TRAVIS_BUILD_DIR
+- echo "**************************"
+- echo "INSTALLING CITY-LIB"
+- echo "**************************"
+- raco pkg install --auto metacoders-dot-org-chula-vista-lib/
+- echo "**************************"
+- echo "INSTALLING CITY-SITE"
+- echo "**************************"
+- raco pkg install --auto metacoders-dot-org-chula-vista-site/
  
 before_script:
 
@@ -37,7 +45,10 @@ before_script:
 # `raco pkg install --deps search-auto` to install any required
 # packages without it getting stuck on a confirmation prompt.
 script:
- - cd metacoders-dot-org-chula-vista && bash build.sh
+- echo "**************************"
+- echo "RUNNING SETUP"
+- echo "**************************"
+- raco setup --no-docs --fail-fast metacoders-dot-org-chula-vista-lib metacoders-dot-org-chula-vista-site
 
 after_success:
  - echo "DONE!"
