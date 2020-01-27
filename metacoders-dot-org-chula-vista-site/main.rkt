@@ -10,6 +10,7 @@
         (city-page
          #:city-name "Chula Vista, CA"
          #:banner-url (prefix/pathify chula-vista-banner-path)
+         #:alt-tag "City of Chula Vista, California with mountains and colorful signs"
          )))
 
 (define (pages)
